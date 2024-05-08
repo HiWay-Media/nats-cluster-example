@@ -11,7 +11,6 @@ services:
       - ./auth.conf:/etc/auth.conf
       #- ./accounts.conf:/etc/accounts.conf
     networks: ["nats"]
-    depends_on: ["nats"]
 
   nats2:
     container_name: nats2
@@ -22,7 +21,7 @@ services:
       - ./auth.conf:/etc/auth.conf
       #- ./accounts.conf:/etc/accounts.conf
     networks: ["nats"]
-    depends_on: ["nats"]
+    depends_on: ["nats1"]
 
   nats3:
     container_name: nats3
