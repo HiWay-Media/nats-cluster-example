@@ -32,7 +32,7 @@ services:
       - ./auth.conf:/etc/auth.conf
       #- ./accounts.conf:/etc/accounts.conf
     networks: ["nats"]
-    depends_on: ["nats"]
+    depends_on: ["nats1"]
 
 networks:
   nats:
