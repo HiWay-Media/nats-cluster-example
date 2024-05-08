@@ -5,7 +5,7 @@ services:
     image: nats
     ports:
       - "8222:8222"
-    command: "--server_name NATS --cluster_name JSC --js --sd /data --cluster nats://0.0.0.0:6222 --http_port 8222 -c /etc/server.conf"
+    command: "--server_name NATS --cluster_name JSC --cluster nats://0.0.0.0:6222 --http_port 8222 -c /etc/server.conf"
     volumes:
       - ./server.conf:/etc/server.conf
       - ./auth.conf:/etc/auth.conf
@@ -15,18 +15,18 @@ services:
   nats2:
     container_name: nats2
     image: nats
-    command: "--server_name N2 --cluster_name NATS --js --sd /data --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222 -c /etc/server.conf"
+    command: "--server_name N2 --cluster_name NATS  --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222 -c /etc/server.conf"
     volumes:
       - ./server.conf:/etc/server.conf
       - ./auth.conf:/etc/auth.conf
-      #- ./accounts.conf:/etc/accounts.conf
+      #- ./accounts.conf:/etc/accounts.conf --> js --js --sd /data
     networks: ["nats"]
     depends_on: ["nats"]
 
   nats3:
     container_name: nats3
     image: nats
-    command: "--server_name N3 --cluster_name NATS --js --sd /data --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222 -c /etc/server.conf"
+    command: "--server_name N3 --cluster_name NATS  --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222 -c /etc/server.conf"
     volumes:
       - ./server.conf:/etc/server.conf
       - ./auth.conf:/etc/auth.conf
