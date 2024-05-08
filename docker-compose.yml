@@ -22,7 +22,8 @@ services:
     volumes:
       - ./server.conf:/etc/server.conf
       #- ./auth.conf:/etc/auth.conf
-      - ./accounts.conf:/etc/accounts.conf --> js --js --sd /data
+      - ./accounts.conf:/etc/accounts.conf
+      # --> js --js --sd /data
     networks: ["nats"]
     depends_on: ["nats"]
 
