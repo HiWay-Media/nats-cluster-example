@@ -1,6 +1,7 @@
 version: '3.5'
 services:
-  nats-1:
+  nats1:
+    container_name: nats1
     image: nats
     ports:
       - "8222:8222"
@@ -12,7 +13,8 @@ services:
     networks: ["nats"]
     depends_on: ["nats"]
 
-  nats-2:
+  nats2:
+    container_name: nats2
     image: nats
     command: "--server_name N2 --cluster_name NATS --js --sd /data --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222 -c /etc/server.conf"
     volumes:
@@ -22,7 +24,8 @@ services:
     networks: ["nats"]
     depends_on: ["nats"]
 
-  nats-3:
+  nats3:
+    container_name: nats3
     image: nats
     command: "--server_name N3 --cluster_name NATS --js --sd /data --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222 -c /etc/server.conf"
     volumes:
