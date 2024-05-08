@@ -5,7 +5,7 @@ services:
     image: nats
     ports:
       - "8222:8222"
-    command: "-http_port 8222 --server_name NATS --cluster_name JSC --js --sd /data --cluster nats://0.0.0.0:6222 -c /etc/server.conf"
+    command: "--server_name NATS --cluster_name JSC --js --sd /data --cluster nats://0.0.0.0:6222 --http_port 8222 -c /etc/server.conf"
     volumes:
       - ./server.conf:/etc/server.conf
       - ./auth.conf:/etc/auth.conf
