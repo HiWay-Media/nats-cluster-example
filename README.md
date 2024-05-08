@@ -8,6 +8,7 @@ Follow these instructions to get the NATS cluster up and running on your local m
 ## Prerequisites
 - Docker
 - Docker Compose
+- 
 ## Installation
 1. Clone this repository to your local machine:
 ```bash
@@ -17,28 +18,35 @@ git clone https://github.com/HiWay-Media/nats-cluster-example.git
 
 1. Navigate to the cloned directory:
 ```bash
-Copy code
 cd nats-cluster-example
 ```
 ## Usage
 1. Start the NATS cluster using Docker Compose:
 ```bash
-Copy code
 docker-compose up -d
 ```
 1. Verify that the cluster is running:
 ```bash
-Copy code
 docker-compose ps
 ```
 This command should display three containers running, each representing a member of the NATS cluster.
+
+## Testing ACL
+
+```bash
+#should not be able to sub
+nats subscribe "test.*" --server localhost:4222 --user=b --password=b
+# write message in topic
+nats publish "test.broadcast" "ciao" --server localhost:4222 --user=b --password=b
+#
+```
 
 ## Testing
 You can test the functionality of the NATS cluster by publishing and subscribing to messages.
 
 1. Publish a message:
 ```bash
-Copy code
+
 docker-compose exec nats1 nats-pub -s nats://nats1:4222 subject "Hello NATS!"
 ```
 
