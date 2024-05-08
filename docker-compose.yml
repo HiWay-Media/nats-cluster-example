@@ -1,7 +1,7 @@
 version: '3.5'
 services:
-  nats1:
-    container_name: nats1
+  nats:
+    container_name: nats
     image: nats
     ports:
       - "8222:8222"
@@ -21,7 +21,7 @@ services:
       - ./auth.conf:/etc/auth.conf
       #- ./accounts.conf:/etc/accounts.conf
     networks: ["nats"]
-    depends_on: ["nats1"]
+    depends_on: ["nats"]
 
   nats3:
     container_name: nats3
@@ -32,7 +32,7 @@ services:
       - ./auth.conf:/etc/auth.conf
       #- ./accounts.conf:/etc/accounts.conf
     networks: ["nats"]
-    depends_on: ["nats1"]
+    depends_on: ["nats"]
 
 networks:
   nats:
